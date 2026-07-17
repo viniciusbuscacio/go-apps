@@ -1,8 +1,9 @@
 # go-apps
 
-A family of small cross-platform desktop apps written in Go, sharing one
-architecture, one look and one set of libraries. Each project lives in its own
-repository and is fully self-contained — this repo is the map.
+A **mini-framework** for small cross-platform desktop apps in Go — one
+architecture, one look, one set of shared libraries — and the family of apps
+built from it. Each project lives in its own repository and is fully
+self-contained — this repo is the map.
 
 ## The apps
 
@@ -52,3 +53,9 @@ Each app doubles as a self-contained template: you can read one repo top to
 bottom and understand everything, then reuse the pattern for the next app.
 What proves itself in one app graduates into a shared library (like
 go-updates).
+
+**Why "mini-framework"?**
+Today it is a shared pattern (the architecture, the agent-operable REST
+contract, the release pipeline) plus shared libraries, growing one piece at a
+time. As more pieces graduate from the apps into libraries, the framework
+part gets less "mini".
