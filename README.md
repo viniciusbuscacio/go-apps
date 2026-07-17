@@ -36,3 +36,19 @@ repository and is fully self-contained — this repo is the map.
 
 Each repo's README and `docs/` tell its full story; start with go-calc for
 the architecture and go-notepad for the updater.
+
+## FAQ
+
+**Why?**
+Because I always wanted to have the same app experience on Windows, Linux and
+macOS. I'm building it one small app at a time.
+
+**Why Go + Wails?**
+One codebase, one small native binary per OS, no Electron-sized runtime — and
+the whole app logic stays in plain, testable Go.
+
+**Why one repository per app?**
+Each app doubles as a self-contained template: you can read one repo top to
+bottom and understand everything, then reuse the pattern for the next app.
+What proves itself in one app graduates into a shared library (like
+go-updates).
