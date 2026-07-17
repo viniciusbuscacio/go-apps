@@ -1,0 +1,54 @@
+# go-apps family — conventions for working sessions
+
+This hub repo has no code. When working on any app of the family, these are
+the standing conventions; each app repo's own docs override on specifics.
+
+## Repos
+
+- Apps: `go-calc`, `go-notepad` (more planned: file explorer, CLI).
+- Libraries: `go-updates` (self-update mechanics; public).
+  Planned: `go-install` (embedded install wizard).
+- One repo per project, one local checkout per repo under `C:\Users\Vinicius\dev\`.
+- Commits: conventional commits, English, straight to main. Releases via
+  annotated semver tags (`vX.Y.Z`) — the tag push triggers the release CI.
+
+## Architecture (every app)
+
+- Go + Wails v2 + Vue 3/TypeScript. Business logic in `internal/<domain>`,
+  pure Go, testable, no Wails imports. `app.go` is a thin adapter. The
+  frontend only renders; rules live in Go.
+- Frameless window, custom title bar, dark/light themes, English UI,
+  Fluent/Win11 look. App icons: Lucide glyph, white stroke on the family's
+  dark rounded tile (`build/appicon-source.svg`; regenerate appicon.png and
+  a multi-size icon.ico from it — render each size from the vector).
+- Embedded REST server (`internal/apiserver`): X-API-Key + CIDR allowlist,
+  structured errors `{"error":{code,message,status}}` with stable codes.
+  `GET /v1/ax` describes the app (descriptor + accessibility tree with
+  testids and per-control risk: safe/navigation/external/sensitive/
+  destructive). `/v1/ui/*` operates the real DOM via the UI bridge.
+  App-specific endpoints register through `apiserver.HandleExtra`.
+- Smoke test `tools/smoke` runs against the open app; every unconditional
+  testid in /v1/ax must be reachable on screen.
+
+## Updater (go-updates)
+
+- Apps import `github.com/viniciusbuscacio/go-updates` (package `updater`)
+  for the mechanics; each app keeps a thin local adapter (`update.go`), the
+  Settings → Updates UI and the `GET /v1/update` endpoint. Reference
+  implementation and UX decisions: go-notepad `docs/updater-design.md`.
+- UX rules: auto-check once a day, opt-in (default OFF — no unasked network
+  calls); Skip is per-tag; Later snoozes 7 days; Install downloads, verifies
+  against `checksums.txt` (mandatory), swaps and restarts immediately.
+- Release assets: `<app>-<tag>-<os>-<arch>.{zip,tar.gz}` ("macos" for
+  darwin) + `checksums.txt` job after the platform builds.
+
+## Working with Vinicius
+
+- Scope new features with a batch of ~20 questions in a `.md` file (each with
+  an "R:" line to answer). When an answer is "não entendi", stop and explain
+  the concept simply before deciding.
+- Family-wide context and decisions are kept in
+  `C:\Users\Vinicius\OneDrive\ViniAgent\21. Go - Wails\` (Markdown), not only
+  in agent memory.
+- Vinicius prefers to run the visual tests himself (open the app, click,
+  observe); agents verify through the REST control plane.
