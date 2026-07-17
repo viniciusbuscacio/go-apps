@@ -6,8 +6,8 @@ the standing conventions; each app repo's own docs override on specifics.
 ## Repos
 
 - Apps: `go-calc`, `go-notepad` (more planned: file explorer, CLI).
-- Libraries: `go-updates` (self-update mechanics; public).
-  Planned: `go-install` (embedded install wizard).
+- Libraries: `go-apiserver` (embedded REST control plane), `go-updates`
+  (self-update mechanics). Planned: `go-install` (embedded install wizard).
 - One repo per project, one local checkout per repo under `C:\Users\Vinicius\dev\`.
 - Commits: conventional commits, English, straight to main. Releases via
   annotated semver tags (`vX.Y.Z`) — the tag push triggers the release CI.
@@ -21,12 +21,13 @@ the standing conventions; each app repo's own docs override on specifics.
   Fluent/Win11 look. App icons: Lucide glyph, white stroke on the family's
   dark rounded tile (`build/appicon-source.svg`; regenerate appicon.png and
   a multi-size icon.ico from it — render each size from the vector).
-- Embedded REST server (`internal/apiserver`): X-API-Key + CIDR allowlist,
-  structured errors `{"error":{code,message,status}}` with stable codes.
-  `GET /v1/ax` describes the app (descriptor + accessibility tree with
+- Embedded REST server (the `go-apiserver` library): X-API-Key + CIDR
+  allowlist, structured errors `{"error":{code,message,status}}` with stable
+  codes. `GET /v1/ax` describes the app (descriptor + accessibility tree with
   testids and per-control risk: safe/navigation/external/sensitive/
-  destructive). `/v1/ui/*` operates the real DOM via the UI bridge.
-  App-specific endpoints register through `apiserver.HandleExtra`.
+  destructive). `/v1/ui/*` operates the real DOM via the UI bridge (app-local
+  `uibridge.go` + `uibridge.ts`). Domain endpoints (/v1/calc, /v1/stats,
+  /v1/update) register through `apiserver.HandleExtra` in each app.
 - Smoke test `tools/smoke` runs against the open app; every unconditional
   testid in /v1/ax must be reachable on screen.
 

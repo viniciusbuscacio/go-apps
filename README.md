@@ -16,6 +16,7 @@ self-contained — this repo is the map.
 
 | Project | What it is |
 |---|---|
+| [go-apiserver](https://github.com/viniciusbuscacio/go-apiserver) | The embedded REST control plane: API-key auth, CIDR allowlist, the `/v1/ax` descriptor and the UI-bridge endpoints that make every app agent-operable. |
 | [go-updates](https://github.com/viniciusbuscacio/go-updates) | Self-update: checks GitHub Releases, verifies `checksums.txt`, swaps the running binary and restarts. Used by every app. |
 | go-install *(planned)* | The "next-next-finish" install wizard, embedded in each app's own binary. |
 
