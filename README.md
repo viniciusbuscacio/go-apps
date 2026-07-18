@@ -18,7 +18,7 @@ self-contained — this repo is the map.
 |---|---|
 | [go-apiserver](https://github.com/viniciusbuscacio/go-apiserver) | The embedded REST control plane: API-key auth, CIDR allowlist, the `/v1/ax` descriptor and the UI-bridge endpoints that make every app agent-operable. |
 | [go-updates](https://github.com/viniciusbuscacio/go-updates) | Self-update: checks GitHub Releases, verifies `checksums.txt`, swaps the running binary and restarts. Used by every app. |
-| [go-installer](https://github.com/viniciusbuscacio/go-installer) | The native install experience: the styled drag-to-Applications DMG on macOS and the embedded "next-next-finish" wizard on Windows — the downloaded exe IS the installer. |
+| [go-installer](https://github.com/viniciusbuscacio/go-installer) | The native install experience: the styled drag-to-Applications DMG on macOS, and on Windows the classic pair — a portable exe that just runs, and a `-setup.exe` (same binary) that installs with a "next-next-finish" wizard and, run again, reinstalls or uninstalls. |
 
 ## What makes the family a family
 

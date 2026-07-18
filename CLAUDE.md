@@ -7,8 +7,9 @@ the standing conventions; each app repo's own docs override on specifics.
 
 - Apps: `go-calc`, `go-notepad` (more planned: file explorer, CLI).
 - Libraries: `go-apiserver` (embedded REST control plane), `go-updates`
-  (self-update mechanics), `go-installer` (macOS DMG builder + the embedded
-  Windows install wizard mechanics).
+  (self-update mechanics), `go-installer` (macOS DMG builder + the Windows
+  install mechanics: releases ship the same binary as a portable exe and a
+  `-setup.exe` whose name opens it as the install/maintenance wizard).
 - One repo per project, one local checkout per repo.
 - Commits: conventional commits, English, straight to main. Releases via
   annotated semver tags (`vX.Y.Z`) — the tag push triggers the release CI.
