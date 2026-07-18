@@ -10,6 +10,10 @@ the standing conventions; each app repo's own docs override on specifics.
   (self-update mechanics), `go-installer` (macOS DMG builder + the Windows
   install mechanics: releases ship the same binary as a portable exe and a
   `-setup.exe` whose name opens it as the install/maintenance wizard).
+- Design: `go-design` — the style guide (icon rules, tokens, tiles, vendored
+  SVGs). READ IT BEFORE TOUCHING ANY APP UI; new apps copy assets from there.
+  Icon rule: Fluent System Icons first; Lucide where Fluent has no equivalent
+  or the family already chose it (identity tiles are Lucide, by decision).
 - One repo per project, one local checkout per repo.
 - Commits: conventional commits, English, straight to main. Releases via
   annotated semver tags (`vX.Y.Z`) — the tag push triggers the release CI.
