@@ -48,8 +48,10 @@ automatically.
   bridge (app-local `uibridge.go` + `uibridge.ts`). Domain endpoints
   (`/v1/calc`, `/v1/stats`, `/v1/update`, go-passwords' `/v1/secrets`…)
   register through `apiserver.HandleExtra` in each app.
-- **Port ranges**: go-calc 8700–8799, go-notepad 8800–8899,
-  go-passwords 8900–8999. Next app takes the next hundred.
+- **Port range**: one family-shared range, **8000–8999**. Each install picks
+  its default port at random, and Shuffle picks randomly too — with ~1000
+  ports, collisions are near-impossible; if one happens, Start fails with a
+  clear error and the user shuffles. No per-app sub-ranges.
 - **Smoke test**: `tools/smoke` runs against the open app; every
   unconditional testid in `/v1/ax` must be reachable on screen.
 
