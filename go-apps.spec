@@ -1,6 +1,6 @@
 # go-apps.spec — the family specification
 
-Version 1.1 — 2026-07-20.
+Version 1.2 — 2026-07-20.
 This file is the single source of truth for the rules of the go-apps family.
 Every repo's AGENTS.md (and CLAUDE.md, which imports it) directs here. When a
 working session produces a new rule or learning, it lands in this file — or,
@@ -24,6 +24,10 @@ maintainer's notes); this file records only the current normative state.
   same parent directory (sibling paths like `../go-design` resolve).
 - Commits: conventional commits, English, straight to main. Releases via
   annotated semver tags (`vX.Y.Z`) — the tag push triggers the release CI.
+- **Language: everything in the repos is English** — code, comments, tests,
+  docs, UI strings, commit messages. The maintainer's working notes and
+  decision journal are kept in Portuguese OUTSIDE GitHub; nothing in
+  Portuguese lands in a repo.
 
 ## 2. Architecture (every app)
 
@@ -101,6 +105,8 @@ maintainer's notes); this file records only the current normative state.
 
 ## Changelog
 
+- 1.2 (2026-07-20): explicit language rule — repos are 100% English; the
+  Portuguese scope-questions doc moved out of the hub.
 - 1.1 (2026-07-20): conformance audit fixes — records the go-calc content
   zoom exception (fixed keypad); go-passwords gains its `tools/smoke`
   (closing the §2 gap).
