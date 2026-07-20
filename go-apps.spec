@@ -1,6 +1,6 @@
 # go-apps.spec — the family specification
 
-Version 1.0 — 2026-07-20.
+Version 1.1 — 2026-07-20.
 This file is the single source of truth for the rules of the go-apps family.
 Every repo's AGENTS.md (and CLAUDE.md, which imports it) directs here. When a
 working session produces a new rule or learning, it lands in this file — or,
@@ -65,7 +65,9 @@ maintainer's notes); this file records only the current normative state.
 - Content zoom: Ctrl/Cmd `+`/`−`/`0` and Ctrl+wheel. The title bar never
   scales — go-notepad zooms the editor text; form/list apps zoom the
   content area via a `.zoom-host` wrapper (50–200%, step 10%). Persisted
-  (debounced) and restored on launch.
+  (debounced) and restored on launch. **Exception: go-calc** — a fixed
+  keypad grid that already scales with the window; zooming it would only
+  overflow the layout (Windows Calculator has no zoom either).
 - Every app has Settings sections Updates and About. go-notepad is the
   family's visual reference (labels outside cards, two-line rows, chevron
   cards for sub-views).
@@ -99,6 +101,9 @@ maintainer's notes); this file records only the current normative state.
 
 ## Changelog
 
+- 1.1 (2026-07-20): conformance audit fixes — records the go-calc content
+  zoom exception (fixed keypad); go-passwords gains its `tools/smoke`
+  (closing the §2 gap).
 - 1.0 (2026-07-20): first consolidated spec — extracted from the hub's
   AGENTS.md; adds the shared 8000–8999 port range, title-bar API indicator,
   content zoom, toasts and the UI vetoes.
